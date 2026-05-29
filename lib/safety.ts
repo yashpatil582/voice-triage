@@ -21,6 +21,16 @@ export type RedFlag =
   | "acute_abdomen"
   | "anaphylaxis";
 
+export const ALLOWED_FLAGS: ReadonlySet<RedFlag> = new Set<RedFlag>([
+  "chest_pain",
+  "severe_headache",
+  "dyspnea",
+  "neuro_deficit",
+  "mental_health_emergency",
+  "acute_abdomen",
+  "anaphylaxis",
+]);
+
 const RED_FLAG_PATTERNS: { flag: RedFlag; patterns: RegExp[] }[] = [
   {
     flag: "chest_pain",
@@ -109,7 +119,10 @@ export function scanForRedFlags(text: string): RedFlag[] {
  */
 export function mergeFlags(llmFlags: string[], userText: string): string[] {
   const scanned = scanForRedFlags(userText);
-  return Array.from(new Set([...llmFlags, ...scanned]));
+  const validLlmFlags = llmFlags.filter((f): f is RedFlag =>
+    ALLOWED_FLAGS.has(f as RedFlag),
+  );
+  return Array.from(new Set<string>([...validLlmFlags, ...scanned]));
 }
 
 /** Should the UI surface an "ER now" banner? */

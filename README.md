@@ -69,7 +69,7 @@ npm test
 npm run eval
 ```
 
-Writes `eval/results/personas.json` and prints a pass/fail table.
+Writes `eval/results/personas.json` (gitignored — runs are local-only) and prints a pass/fail table. See `eval/results/personas.example.json` for the output schema.
 
 ## Eval
 
@@ -85,6 +85,13 @@ Writes `eval/results/personas.json` and prints a pass/fail table.
 | Groq llama-3.3-70b-versatile | _(TBD on first eval run)_ |  |
 
 Run `npm run eval` to populate the table.
+
+## Known limitations & roadmap
+
+- LLM over-flags `dyspnea` on Q2H albuterol use; summary endpoint still lands on `urgent_care` (intentional two-layer design).
+- No per-IP rate limiting on hosted demo — protected only by Groq TPD ceiling.
+- Red-flag taxonomy covers 7 categories; production would need ~30+ with clinical review (pediatric, sepsis, OB, etc.).
+- Client-trusted conversation history — production should use server-side state.
 
 ## Project layout
 

@@ -33,6 +33,7 @@ build/
 *.tsbuildinfo
 next-env.d.ts
 
-# Eval outputs not committed except curated results
-eval/results/raw/
+# Eval outputs: real runs are local-only; only the schema example is tracked.
+eval/results/*.json
+!eval/results/personas.example.json
 .vercel

@@ -53,6 +53,20 @@ describe("mergeFlags", () => {
     const merged = mergeFlags(["dyspnea"], "I have crushing chest pain");
     expect(new Set(merged)).toEqual(new Set(["dyspnea", "chest_pain"]));
   });
+
+  test("drops a single unknown LLM flag on benign text", () => {
+    expect(mergeFlags(["none"], "I have a sore throat")).toEqual([]);
+  });
+
+  test("drops multiple unknown LLM flags on benign text", () => {
+    expect(mergeFlags(["urgent", "panic"], "I have a sore throat")).toEqual([]);
+  });
+
+  test("keeps valid LLM flags and drops unknown ones", () => {
+    expect(new Set(mergeFlags(["chest_pain", "urgent"], "benign text"))).toEqual(
+      new Set(["chest_pain"]),
+    );
+  });
 });
 
 describe("shouldEscalate", () => {

@@ -169,7 +169,11 @@ export default function Page() {
       </div>
 
       {escalating && (
-        <div className="mb-6 rounded-lg border border-danger bg-danger/15 p-4">
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="mb-6 rounded-lg border border-danger bg-danger/15 p-4"
+        >
           <div className="text-base font-semibold text-danger">⚠ Possible emergency detected</div>
           <div className="mt-1 text-sm">
             Red flags: {safetyFlags.join(", ")}. If real, call 911 or go to the nearest ER now.
@@ -193,12 +197,14 @@ export default function Page() {
             <div>{m.content}</div>
           </div>
         ))}
-        {status === "thinking" && (
-          <div className="text-sm text-foreground/50">Agent is thinking…</div>
-        )}
-        {status === "transcribing" && (
-          <div className="text-sm text-foreground/50">Transcribing…</div>
-        )}
+        <div aria-live="polite">
+          {status === "thinking" && (
+            <div className="text-sm text-foreground/50">Agent is thinking…</div>
+          )}
+          {status === "transcribing" && (
+            <div className="text-sm text-foreground/50">Transcribing…</div>
+          )}
+        </div>
       </section>
 
       {status !== "done" && (

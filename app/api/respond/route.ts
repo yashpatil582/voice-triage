@@ -6,7 +6,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { llmClient, llmModel } from "@/lib/groq";
 import { TurnSchema, TURN_SYSTEM_PROMPT, type Turn } from "@/lib/prompts";
-import { mergeFlags } from "@/lib/safety";
+import { mergeFlags, scanForRedFlags } from "@/lib/safety";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -22,6 +22,9 @@ export async function POST(req: NextRequest) {
     if (!userText.trim()) {
       return NextResponse.json({ error: "missing 'userText'" }, { status: 400 });
     }
+
+    // Scan first so we still escalate if the LLM call or its JSON parse fails.
+    const scanned = scanForRedFlags(userText);
 
     const client = llmClient();
     const response = await client.chat.completions.create({
@@ -43,6 +46,16 @@ export async function POST(req: NextRequest) {
     try {
       parsed = TurnSchema.parse(JSON.parse(raw));
     } catch (e) {
+      if (scanned.length > 0) {
+        const emergencyTurn: Turn = {
+          reply:
+            "This sounds like a medical emergency. Call 911 or go to the nearest emergency room right now.",
+          safety_flags: scanned,
+          triage_disposition: "er_referral",
+          end_conversation: true,
+        };
+        return NextResponse.json({ turn: emergencyTurn });
+      }
       const errMsg = e instanceof Error ? e.message : "schema validation failed";
       return NextResponse.json({ error: `LLM returned malformed JSON: ${errMsg}`, raw }, { status: 502 });
     }
