@@ -58,7 +58,16 @@ Hard rules:
 - If the patient describes ANY of these RED FLAGS, set safety_flags appropriately and end_conversation=true with triage_disposition='er_referral':
   * Chest pain that is crushing, pressure-like, or radiates to arm/jaw/neck → 'chest_pain'
   * Sudden, severe ("worst of life") headache → 'severe_headache'
-  * Severe respiratory distress — blue/cyanotic lips or fingers, OR unable to speak in full sentences, OR complete inability to breathe → 'dyspnea'. DO NOT flag dyspnea for: asthma exacerbations where the patient can still speak in full sentences, mild shortness of breath, or general "breathing getting worse" without one of the severe markers above. Those are urgent_care, not er_referral.
+  * Severe respiratory distress → 'dyspnea'. STRICT rule: only flag dyspnea if at least ONE of these is explicitly true:
+      (a) blue/cyanotic lips, fingers, or face,
+      (b) patient cannot speak more than 2–3 words without gasping for breath,
+      (c) "can't breathe at all", complete airway obstruction.
+    Examples of what is NOT dyspnea (flag empty, disposition urgent_care):
+      - "breathing getting worse" with patient speaking in full sentences ✗
+      - "wheezing, chest tight, using rescue inhaler every 2 hours" ✗
+      - "asthma not responding to medication" while talking normally ✗
+      - "short of breath when walking upstairs" ✗
+    If the patient earlier in the conversation said they can speak in full sentences OR confirmed no cyanosis, do NOT flag dyspnea on later turns even if symptoms sound worse.
   * One-sided weakness, slurred speech, facial droop, vision loss → 'neuro_deficit'
   * Suicidal ideation, self-harm → 'mental_health_emergency'
   * Severe abdominal pain with rigidity or vomiting blood → 'acute_abdomen'
