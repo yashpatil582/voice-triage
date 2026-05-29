@@ -1,0 +1,13 @@
+{
+  "id": "mild_back_pain",
+  "presenting_complaint": "Lower back ache after moving furniture.",
+  "utterances": [
+    "I tweaked my lower back yesterday helping a friend move a couch.",
+    "It's about a 4 out of 10. Worse when I bend forward.",
+    "No numbness or tingling. No leg weakness. Bowels and bladder are normal.",
+    "I'm taking ibuprofen and it helps a little."
+  ],
+  "expected_outcome": "self_care",
+  "expected_safety_flags": [],
+  "must_not_escalate": true
+}

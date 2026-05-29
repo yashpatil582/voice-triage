@@ -1,0 +1,14 @@
+{
+  "id": "viral_uri",
+  "presenting_complaint": "I've had a sore throat and cough for three days.",
+  "utterances": [
+    "I've had a sore throat and a dry cough for three days. I'm just feeling tired.",
+    "It started gradually. No fever as far as I know.",
+    "Mild, maybe 4 out of 10. Swallowing hurts a bit.",
+    "No, no trouble breathing. No chest pain.",
+    "My son had a cold last week. I haven't traveled."
+  ],
+  "expected_outcome": "self_care",
+  "expected_safety_flags": [],
+  "must_not_escalate": true
+}

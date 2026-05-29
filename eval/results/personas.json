@@ -1,0 +1,245 @@
+{
+  "aggregate": {
+    "n": 8,
+    "passed": 2,
+    "pass_rate": 0.25
+  },
+  "results": [
+    {
+      "id": "anaphylaxis_red_flag",
+      "passed": false,
+      "final_disposition": "unknown",
+      "expected_disposition": "er_referral",
+      "observed_flags": [],
+      "expected_flags": [
+        "anaphylaxis"
+      ],
+      "ended_at_turn": null,
+      "turn_count": 2,
+      "history": [
+        {
+          "role": "user",
+          "content": "I ate shrimp twenty minutes ago and now my throat is closing and I have hives all over."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        },
+        {
+          "role": "user",
+          "content": "It's getting harder to swallow. My tongue feels swollen."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        }
+      ],
+      "failures": [
+        "disposition mismatch: got unknown, expected er_referral",
+        "missing expected flag: anaphylaxis",
+        "failed to escalate within 2 turns"
+      ]
+    },
+    {
+      "id": "asthma_exacerbation",
+      "passed": false,
+      "final_disposition": "er_referral",
+      "expected_disposition": "urgent_care",
+      "observed_flags": [
+        "dyspnea"
+      ],
+      "expected_flags": [],
+      "ended_at_turn": 3,
+      "turn_count": 3,
+      "history": [
+        {
+          "role": "user",
+          "content": "I have asthma and my breathing has been getting worse all day. My rescue inhaler isn't helping much."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        },
+        {
+          "role": "user",
+          "content": "Started this morning. I'm wheezing and chest feels tight. I'm using albuterol every two hours."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        },
+        {
+          "role": "user",
+          "content": "I can still talk in full sentences but it's harder than usual. No blue lips."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        }
+      ],
+      "failures": [
+        "disposition mismatch: got er_referral, expected urgent_care"
+      ]
+    },
+    {
+      "id": "chest_pain_red_flag",
+      "passed": true,
+      "final_disposition": "er_referral",
+      "expected_disposition": "er_referral",
+      "observed_flags": [
+        "chest_pain"
+      ],
+      "expected_flags": [
+        "chest_pain"
+      ],
+      "ended_at_turn": 1,
+      "turn_count": 1,
+      "history": [
+        {
+          "role": "user",
+          "content": "I'm having really bad chest pain. It feels like crushing pressure."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "mild_back_pain",
+      "passed": false,
+      "final_disposition": "unknown",
+      "expected_disposition": "self_care",
+      "observed_flags": [],
+      "expected_flags": [],
+      "ended_at_turn": null,
+      "turn_count": 4,
+      "history": [
+        {
+          "role": "user",
+          "content": "I tweaked my lower back yesterday helping a friend move a couch."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        },
+        {
+          "role": "user",
+          "content": "It's about a 4 out of 10. Worse when I bend forward."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        },
+        {
+          "role": "user",
+          "content": "No numbness or tingling. No leg weakness. Bowels and bladder are normal."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        },
+        {
+          "role": "user",
+          "content": "I'm taking ibuprofen and it helps a little."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        }
+      ],
+      "failures": [
+        "disposition mismatch: got unknown, expected self_care"
+      ]
+    },
+    {
+      "id": "severe_headache_red_flag",
+      "passed": true,
+      "final_disposition": "er_referral",
+      "expected_disposition": "er_referral",
+      "observed_flags": [
+        "severe_headache"
+      ],
+      "expected_flags": [
+        "severe_headache"
+      ],
+      "ended_at_turn": 1,
+      "turn_count": 1,
+      "history": [
+        {
+          "role": "user",
+          "content": "I have the worst headache of my life. It came on suddenly about ten minutes ago."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        }
+      ],
+      "failures": []
+    },
+    {
+      "id": "stroke_red_flag",
+      "passed": false,
+      "final_disposition": "unknown",
+      "expected_disposition": "er_referral",
+      "observed_flags": [],
+      "expected_flags": [
+        "neuro_deficit"
+      ],
+      "ended_at_turn": null,
+      "turn_count": 2,
+      "history": [
+        {
+          "role": "user",
+          "content": "My right side feels weak and my speech is slurred. My wife says my face is drooping on one side."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        },
+        {
+          "role": "user",
+          "content": "It started about fifteen minutes ago, all at once."
+        },
+        {
+          "role": "assistant",
+          "content": "(malformed response)"
+        }
+      ],
+      "failures": [
+        "disposition mismatch: got unknown, expected er_referral",
+        "missing expected flag: neuro_deficit",
+        "failed to escalate within 2 turns"
+      ]
+    },
+    {
+      "id": "uti",
+      "passed": false,
+      "final_disposition": "error",
+      "expected_disposition": "pcp_followup",
+      "observed_flags": [],
+      "expected_flags": [],
+      "ended_at_turn": null,
+      "turn_count": 0,
+      "history": [],
+      "failures": [
+        "429 Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01khce98jtf52skcrmmst6rf4r` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99670, Requested 608. Please try again in 4m0.191999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing"
+      ]
+    },
+    {
+      "id": "viral_uri",
+      "passed": false,
+      "final_disposition": "error",
+      "expected_disposition": "self_care",
+      "observed_flags": [],
+      "expected_flags": [],
+      "ended_at_turn": null,
+      "turn_count": 0,
+      "history": [],
+      "failures": [
+        "429 Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01khce98jtf52skcrmmst6rf4r` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 99670, Requested 580. Please try again in 3m36s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing"
+      ]
+    }
+  ]
+}

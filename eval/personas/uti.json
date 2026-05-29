@@ -1,0 +1,13 @@
+{
+  "id": "uti",
+  "presenting_complaint": "Burning when I pee and going more often.",
+  "utterances": [
+    "I have burning when I urinate and I keep needing to go.",
+    "Started two days ago. About a 6 out of 10. It's getting worse.",
+    "No fever, no back pain, no blood that I can see. Just burning and frequency.",
+    "I'm a 28-year-old woman, no history of kidney problems."
+  ],
+  "expected_outcome": "pcp_followup",
+  "expected_safety_flags": [],
+  "must_not_escalate": true
+}
