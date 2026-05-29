@@ -8,8 +8,8 @@ Open-source, voice-first clinical intake agent. Talk into your browser → multi
 
 > **⚠️ Research demo only.** This is not a medical device and must not be used for real triage. If you are experiencing a medical emergency, call 911 (US) or your local emergency number.
 
-**Live demo:** _(coming once deployed)_
-**Companion project:** [open-scribe](https://github.com/yashpatil582/open-scribe) — batch-pipeline clinical scribe with FHIR output.
+**Live demo:** **https://voice-triage.vercel.app** — open in a Chromium-based browser, allow mic, click 🎤.
+**Companion project:** [open-scribe](https://github.com/yashpatil582/open-scribe) — batch-pipeline clinical scribe with FHIR output, evaluated on PriMock57 and ACI-Bench.
 
 ## What it does
 

@@ -35,3 +35,4 @@ next-env.d.ts
 
 # Eval outputs not committed except curated results
 eval/results/raw/
+.vercel
