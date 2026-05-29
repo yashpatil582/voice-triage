@@ -1,5 +1,6 @@
 # voice-triage
 
+[![CI](https://github.com/yashpatil582/voice-triage/actions/workflows/ci.yml/badge.svg)](https://github.com/yashpatil582/voice-triage/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
 [![Deploy on Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com)
